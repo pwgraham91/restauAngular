@@ -14,7 +14,7 @@ class Restaurant(AbstractUser):
 class Table(models.Model):
     table_name = models.CharField(max_length=10)
     seats = models.SmallIntegerField()
-    restaurant = models.ForeignKey(Restaurant, related_name='restaurants')
+    restaurant = models.ForeignKey(Restaurant, related_name='restaurant_table')
 
     def __unicode__(self):
         return u"{}".format(self.table_name)
@@ -45,7 +45,7 @@ class Party(models.Model):
     end_time = models.DateTimeField(null=True)
     total_time = models.CharField(max_length=2, blank=True)
     predicted_end_time = models.DateTimeField(null=True)
-    table = models.ForeignKey(Table, related_name='tables')
+    table = models.ForeignKey(Table, related_name='table_party')
 
     def __unicode__(self):
         return u"pk:{} name:{}".format(self.pk, self.party_name)
