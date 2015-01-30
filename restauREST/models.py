@@ -20,27 +20,13 @@ class Table(models.Model):
         return u"{}".format(self.table_name)
 
 
-def check_dinner():
-    if datetime.now().hour >= 16:
-        return True
-    else:
-        return False
-
-
-def check_weekday():
-    if datetime.now().weekday() >= 6:
-        return False
-    else:
-        return True
-
-
 class Party(models.Model):
     party_name = models.CharField(max_length=50, blank=True)
     number_of_males = models.CharField(max_length=2)
     number_of_females = models.CharField(max_length=2)
     number_of_children = models.CharField(max_length=2)
-    dinner = models.BooleanField(default=check_dinner())
-    weekday = models.BooleanField(default=check_weekday())
+    dinner = models.BooleanField(default=(datetime.now().hour >= 16))
+    weekday = models.BooleanField(default=(datetime.now().weekday() >= 6))
     start_time = models.DateTimeField(auto_now_add=True, null=True)
     end_time = models.DateTimeField(null=True)
     total_time = models.CharField(max_length=2, blank=True)
