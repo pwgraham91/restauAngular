@@ -55,4 +55,6 @@ target/
 
 .idea
 
+# local files
 local_settings.py
+todo.md
