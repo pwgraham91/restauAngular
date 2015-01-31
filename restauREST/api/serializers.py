@@ -10,10 +10,14 @@ class RestaurantSerializer(serializers.ModelSerializer):
 
 
 class TableSerializer(serializers.ModelSerializer):
+    restaurant = RestaurantSerializer(read_only=True)
+
     class Meta:
         model = Table
 
 
 class PartySerializer(serializers.ModelSerializer):
+    table = TableSerializer(read_only=True)
+
     class Meta:
         model = Party
